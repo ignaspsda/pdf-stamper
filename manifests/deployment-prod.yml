@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: pdfstamping 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pdfstamping
+  template:
+    metadata:
+      labels:
+        app: pdfstamping 
+    spec:
+      containers:
+        - name: pdfstamping 
+          image: signingportal.azurecr.io/pdfstamping
+          ports:
+          - containerPort: 80

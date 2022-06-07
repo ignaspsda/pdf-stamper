@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pdfstamping-ingress
+  labels:
+    app: pdfstamping
+    release: pdfstamping
+  annotations:
+    nginx.ingress.kubernetes.io/http2-push-preload: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+spec:
+  tls:
+    - hosts:
+        - "stamping.doclogix.lt"
+      secretName: stamping.doclogix.lt
+  rules:
+    - host: stamping.doclogix.lt
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: pdfstamping
+                port:
+                  number: 80
+
+

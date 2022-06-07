@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: stamping 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stamping
+  template:
+    metadata:
+      labels:
+        app: stamping 
+    spec:
+      containers:
+        - name: stamping 
+          image: dlxdev.azurecr.io/stamping
+          ports:
+          - containerPort: 80
